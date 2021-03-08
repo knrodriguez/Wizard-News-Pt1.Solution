@@ -45,9 +45,13 @@ app.get("/", (req, res) => {
   res.send(html);
 });
 
-app.get('/posts/:id', (req,res) => {
+app.get('/posts/:id', (req,res,next) => {
   const id = req.params.id;
   const post = postBank.find(id);
+  if(!post.id){
+    const error = new Error('Page Not Found')
+    next(error);
+  }
   const html = `<!DOCTYPE html>
   <html>
     <head>
@@ -69,6 +73,20 @@ app.get('/posts/:id', (req,res) => {
   </html>`;
 
   res.send(html);
+})
+
+app.use((err,req,res,next) => {
+  console.error(err.stack);
+  res.send(`<!DOCTYPE html>
+  <html>
+    <head>
+      <title>Wizard News</title>
+      <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body>
+      <p>Error: Page Not Found, Sorry!</p>
+    </body>
+  </html>`);
 })
 
 const PORT = 1337;
