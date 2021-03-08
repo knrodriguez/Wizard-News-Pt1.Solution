@@ -12,6 +12,10 @@ const volleyball = require('volleyball');
 app.use(volleyball)
 */
 
+//__dirname is an environment variable that returns the 
+//absolute path of the directory containing the file __dirname is in
+app.use(express.static(__dirname + '/public'))
+
 app.get("/", (req, res) => {
   const posts = postBank.list();
   const html = `<!DOCTYPE html>
