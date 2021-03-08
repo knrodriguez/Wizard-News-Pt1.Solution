@@ -1,4 +1,6 @@
-module.exports = (post) => `<!DOCTYPE html>
+const html = require('html-template-tag')
+
+module.exports = (post) => html`<!DOCTYPE html>
 <html>
   <head>
     <title>Wizard News</title>
