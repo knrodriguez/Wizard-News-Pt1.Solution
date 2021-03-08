@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
       </head>
       <body>
         <ul>
-<!-- arrow function shorthand, doesn't need return keyword if function body is one line of code -->
+<!-- function shorthand, doesn't need return keyword if function body is one line of code -->
           ${posts.map(post => `<li>${post.title} by ${post.name}</li>`)} 
         </ul>
       </body>
